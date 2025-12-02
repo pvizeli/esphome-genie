@@ -28,6 +28,14 @@ output:
     min_power: 0%
     max_power: 100%
 
+# ESP32-specific: Improv via Bluetooth for easy WiFi setup
+esp32_improv:
+  authorizer: none
+
+# ESP32-specific: Enable Bluetooth proxy
+bluetooth_proxy:
+  active: true
+
 # Import common configuration from GitHub
 packages:
   genie_common: github://pvizeli/esphome-genie/common.yml@main
