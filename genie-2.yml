@@ -26,6 +26,9 @@ output:
     min_power: 0%
     max_power: 100%
 
+# ESP8266-specific: Captive Portal for easy WiFi setup
+captive_portal:
+
 # Import common configuration from GitHub
 packages:
   genie_common: github://pvizeli/esphome-genie/common.yml@main
