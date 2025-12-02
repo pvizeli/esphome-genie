@@ -44,9 +44,8 @@ light:
     id: status_led
     pin: ${led_pin}
     num_leds: 1
-    rmt_channel: 1
     rgb_order: GRB
-    chipset: WS2812
+    chipset: ws2812
     internal: true
 
 # Import common configuration from GitHub
