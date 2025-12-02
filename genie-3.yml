@@ -8,16 +8,17 @@ dashboard_import:
 substitutions:
   name: perfume-genie3
   friendly_name: Perfume Genie 3
-  comment: Perfume Genie 3.0 ESP32.
-  # GPIO pin assignments for ESP32
+  comment: Perfume Genie 3.0 ESP32-C6.
+  # GPIO pin assignments for ESP32-C6
   button_pin: GPIO3
   fan_pin: GPIO4
   led_pin: GPIO15
 
 esp32:
-  board: esp32dev
+  board: esp32-c6-devkitc-1
+  variant: esp32c6
   framework:
-    type: arduino
+    type: esp-idf
 
 # Platform-specific PWM output for ESP32
 output:
