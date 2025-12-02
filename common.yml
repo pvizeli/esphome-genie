@@ -129,4 +129,5 @@ light:
     pin: ${led_pin}
     num_leds: 1
     type: GRB
+    method: ${led_method}
     internal: true

@@ -13,6 +13,8 @@ substitutions:
   button_pin: GPIO3
   fan_pin: GPIO4
   led_pin: GPIO15
+  # NeoPixelBus method for ESP-IDF (ESP32-C6)
+  led_method: ESP32_RMT_1
 
 esp32:
   board: esp32-c6-devkitc-1

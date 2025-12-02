@@ -13,6 +13,8 @@ substitutions:
   button_pin: GPIO3
   fan_pin: GPIO4
   led_pin: GPIO15
+  # NeoPixelBus method for ESP8266
+  led_method: ESP8266_UART1
 
 esp8266:
   board: esp_wroom_02
