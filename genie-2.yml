@@ -13,8 +13,6 @@ substitutions:
   button_pin: GPIO3
   fan_pin: GPIO4
   led_pin: GPIO15
-  # NeoPixelBus method for ESP8266
-  led_method: ESP8266_UART1
 
 esp8266:
   board: esp_wroom_02
@@ -37,6 +35,18 @@ wifi:
 
 # ESP8266-specific: Captive Portal for easy WiFi setup
 captive_portal:
+
+# ESP8266-specific: Status LED using NeoPixelBus
+light:
+  - platform: neopixelbus
+    name: status_leds
+    id: status_led
+    variant: WS2812
+    pin: ${led_pin}
+    num_leds: 1
+    type: GRB
+    method: ESP8266_UART1
+    internal: true
 
 # Import common configuration from GitHub
 packages:
