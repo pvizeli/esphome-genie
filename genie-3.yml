@@ -1,25 +1,27 @@
-# Perfume Genie 2.0 - ESP8266 Version
+# Perfume Genie 3.0 - ESP32 Version
 
 # Dashboard Import Configuration
 dashboard_import:
-  package_import_url: github://pvizeli/esphome-genie/genie-2.yml@main
+  package_import_url: github://pvizeli/esphome-genie/genie-3.yml@main
   import_full_config: false
 
 substitutions:
-  name: perfume-genie2
-  friendly_name: Perfume Genie 2 ESP8266
-  comment: Perfume Genie 2.0 ESP8266.
-  # GPIO pin assignments for ESP8266
+  name: perfume-genie3
+  friendly_name: Perfume Genie 3
+  comment: Perfume Genie 3.0 ESP32.
+  # GPIO pin assignments for ESP32
   button_pin: GPIO3
   fan_pin: GPIO4
   led_pin: GPIO15
 
-esp8266:
-  board: esp_wroom_02
+esp32:
+  board: esp32dev
+  framework:
+    type: arduino
 
-# Platform-specific PWM output for ESP8266
+# Platform-specific PWM output for ESP32
 output:
-  - platform: esp8266_pwm
+  - platform: ledc
     id: fan_speed
     pin: ${fan_pin}
     frequency: "21kHz"

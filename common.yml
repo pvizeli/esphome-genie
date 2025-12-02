@@ -1,0 +1,127 @@
+# Common configuration for Perfume Genie 2.0 (ESP8266 and ESP32)
+# This file contains all shared configuration that works on both platforms
+# Designed to be imported as a remote package from GitHub
+# Repository: github.com/pvizeli/esphome-genie
+
+esphome:
+  name: "${name}"
+  friendly_name: "${friendly_name}"
+  name_add_mac_suffix: false
+  comment: "${comment}"
+  project:
+    name: "pvizeli.genie"
+    version: "1.0.0"
+  on_boot:
+  - priority: 600
+    then:
+      - light.turn_on:
+          id: status_led
+          transition_length: 0s
+          red: 100%
+          green: 100%
+          blue: 100%
+
+# Enable logging
+logger:
+
+# Enable Home Assistant API
+api:
+ encryption:   # Uses key set by Home Assistant
+
+ota:
+  - platform: esphome
+
+wifi:
+  on_connect:
+   - light.turn_on:
+      id: status_led
+      brightness: 100%
+      red: 0%
+      green: 0%
+      blue: 100%
+  on_disconnect:
+   - light.turn_on:
+      id: status_led
+      brightness: 100%
+      red: 100%
+      green: 0%
+      blue: 0%
+
+# Get time from ha
+time:
+  - platform: homeassistant
+    id: homeassistant_time
+
+number:
+  - platform: template
+    name: "Fan Auto-Off Delay"
+    id: fan_auto_off_delay
+    optimistic: true
+    restore_value: true
+    min_value: 1
+    max_value: 180
+    initial_value: 30
+    step: 10
+    unit_of_measurement: min
+
+script:
+  - id: auto_off_fan
+    mode: restart
+    then:
+      - delay: !lambda "return (int(id(fan_auto_off_delay).state) * 60) * 1000;"
+      - fan.turn_off: fan_toggle
+
+binary_sensor:
+# WIFI Status
+  - platform: status
+    name: "Wifi Status"
+    icon: "mdi:wifi"
+
+# Rear button fan toggle
+  - platform: gpio
+    name: Genie button
+    icon: "mdi:gesture-tap-button"
+    internal: true
+    pin:
+      number: ${button_pin}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    on_click:
+      then:
+        - fan.toggle:
+            id: fan_toggle
+
+fan:
+  - platform: speed
+    output: fan_speed
+    name: "Perfume Genie Fan"
+    id: fan_toggle
+    speed_count: 4
+    on_turn_off:
+      - light.turn_on:
+          id: status_led
+          brightness: 100%
+          red: 0%
+          green: 0%
+          blue: 100%
+    on_turn_on:
+      - light.turn_on:
+          id: status_led
+          brightness: 100%
+          red: 0%
+          green: 100%
+          blue: 0%
+      - script.execute: auto_off_fan
+
+# Status LED
+light:
+  - platform: neopixelbus
+    name: status_leds
+    id: status_led
+    variant: WS2812
+    pin: ${led_pin}
+    num_leds: 1
+    type: GRB
+    internal: true
