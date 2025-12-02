@@ -85,6 +85,7 @@ binary_sensor:
 # Rear button fan toggle
   - platform: gpio
     name: Genie button
+    id: genie_button
     icon: "mdi:gesture-tap-button"
     internal: true
     pin:

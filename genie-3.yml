@@ -30,8 +30,9 @@ output:
     max_power: 100%
 
 # ESP32-specific: Improv via Bluetooth for easy WiFi setup
+# Press the physical button to authorize WiFi provisioning
 esp32_improv:
-  authorizer: none
+  authorizer: genie_button
 
 # ESP32-specific: Enable Bluetooth proxy
 bluetooth_proxy:
