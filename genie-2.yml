@@ -26,8 +26,27 @@ output:
     min_power: 0%
     max_power: 100%
 
+# ESP8266-specific: WiFi fallback AP and Captive Portal
+wifi:
+  # Enable fallback hotspot (captive portal) in case WiFi connection fails
+  ap:
+    ssid: "${name} Fallback"
+    password: "config123"
+
 # ESP8266-specific: Captive Portal for easy WiFi setup
 captive_portal:
+
+# ESP8266-specific: Status LED using NeoPixelBus
+light:
+  - platform: neopixelbus
+    name: status_leds
+    id: status_led
+    variant: WS2812
+    pin: ${led_pin}
+    num_leds: 1
+    type: GRB
+    method: ESP8266_UART1
+    internal: true
 
 # Import common configuration from GitHub
 packages:

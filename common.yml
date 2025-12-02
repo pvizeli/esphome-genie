@@ -120,13 +120,6 @@ fan:
           blue: 0%
       - script.execute: auto_off_fan
 
-# Status LED
-light:
-  - platform: neopixelbus
-    name: status_leds
-    id: status_led
-    variant: WS2812
-    pin: ${led_pin}
-    num_leds: 1
-    type: GRB
-    internal: true
+# Status LED configuration is platform-specific
+# See genie-2.yml for ESP8266 (neopixelbus)
+# See genie-3.yml for ESP32 (esp32_rmt_led_strip)
