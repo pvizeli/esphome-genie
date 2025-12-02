@@ -45,7 +45,6 @@ light:
     pin: ${led_pin}
     num_leds: 1
     type: GRB
-    method: ESP8266_UART1
     internal: true
 
 # Import common configuration from GitHub
