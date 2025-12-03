@@ -41,12 +41,11 @@ The workflow will automatically:
 ### Release Assets
 
 Each release will include:
-- `genie-2.factory.bin` - Factory firmware for ESP8266 version
+- `genie-2.bin` - Firmware for ESP8266 version (Genie 2)
 - `genie-2.ota.bin` - OTA update for ESP8266 version
-- `genie-2.manifest.json` - Web installer manifest for Genie 2
-- `genie-3.factory.bin` - Factory firmware for ESP32-C6 version
+- `genie-3.bin` - Firmware for ESP32-C6 version (Genie 3)
 - `genie-3.ota.bin` - OTA update for ESP32-C6 version
-- `genie-3.manifest.json` - Web installer manifest for Genie 3
+- `esphome-genie.manifest.json` - Combined web installer manifest for both devices
 
 ## Web Installer
 
@@ -67,12 +66,23 @@ You can also manually trigger the build workflow:
 
 ## Workflow Overview
 
-The workflow consists of four jobs:
+The project uses three separate workflows:
 
-1. **build** - Compiles firmware for both Genie 2 and Genie 3 using the ESPHome build action
-2. **combine-manifests** - Collects all firmware files and prepares them for deployment
-3. **deploy-pages** - Deploys the static site and firmware files to GitHub Pages
-4. **create-release-assets** - (Only on releases) Uploads firmware binaries to the GitHub release
+1. **ci.yml** - Continuous Integration
+   - Tests both Genie 2 and Genie 3 configurations
+   - Validates against stable, beta, and dev ESPHome versions
+   - Runs on pull requests, pushes to main, and daily schedules
+
+2. **publish-firmware.yml** - Firmware Publishing (triggers on releases)
+   - Uses ESPHome's official reusable workflows
+   - Builds firmware for both devices
+   - Creates combined manifest (esphome-genie.manifest.json)
+   - Uploads binaries to GitHub release
+
+3. **publish-pages.yml** - GitHub Pages Deployment
+   - Triggers on static file changes or after firmware publishes
+   - Downloads latest firmware from releases
+   - Deploys web installer to GitHub Pages
 
 ## Customization
 

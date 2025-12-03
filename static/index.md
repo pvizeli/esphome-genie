@@ -18,17 +18,9 @@ Both versions feature:
 
 ## Installation
 
-### Genie 2 (ESP8266)
+You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
 
-You can use the button below to install the pre-built firmware directly to your Genie 2 device via USB from the browser.
-
-<esp-web-install-button manifest="./firmware/genie-2.manifest.json"></esp-web-install-button>
-
-### Genie 3 (ESP32-C6)
-
-You can use the button below to install the pre-built firmware directly to your Genie 3 device via USB from the browser.
-
-<esp-web-install-button manifest="./firmware/genie-3.manifest.json"></esp-web-install-button>
+<esp-web-install-button manifest="./firmware/esphome-genie.manifest.json"></esp-web-install-button>
 
 <script type="module" src="https://unpkg.com/esp-web-tools@10/dist/web/install-button.js?module"></script>
 
