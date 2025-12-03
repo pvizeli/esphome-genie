@@ -1,0 +1,10 @@
+title: Perfume Genie ESPHome Firmware
+description: Smart fragrance diffuser controller firmware for ESP8266 and ESP32
+theme: jekyll-theme-minimal
+
+plugins:
+  - jekyll-seo-tag
+
+github:
+  is_project_page: true
+  repository_url: https://github.com/pvizeli/esphome-genie
