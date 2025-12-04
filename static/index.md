@@ -18,6 +18,8 @@ Both versions feature:
 
 ## Installation
 
+**First time flashing your Genie?** Check out our [Hardware Flashing Guide](flashing.html) for detailed instructions on connecting to your device.
+
 You can use the button below to install the pre-built firmware directly to your device via USB from the browser.
 
 <esp-web-install-button manifest="./firmware/esphome-genie.manifest.json"></esp-web-install-button>
