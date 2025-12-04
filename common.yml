@@ -33,6 +33,8 @@ api:
 ota:
   - platform: esphome
     id: ota_esphome
+  - platform: http_request
+    id: ota_http_request
 
 wifi:
   # Enable fallback hotspot (captive portal) in case WiFi connection fails
