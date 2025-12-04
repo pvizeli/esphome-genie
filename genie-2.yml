@@ -36,6 +36,10 @@ wifi:
 # ESP8266-specific: Captive Portal for easy WiFi setup
 captive_portal:
 
+# ESP8266-specific: Disable SSL verification for HTTP requests (limited resources)
+http_request:
+  verify_ssl: false
+
 # ESP8266-specific: Status LED using NeoPixelBus
 light:
   - platform: neopixelbus
