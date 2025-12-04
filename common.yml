@@ -34,16 +34,6 @@ ota:
   - platform: esphome
     id: ota_esphome
 
-# Enable HTTP requests for OTA updates from GitHub releases
-http_request:
-
-# Update component to check for new firmware from GitHub releases
-update:
-  - platform: http_request
-    name: Firmware
-    id: update_http_request
-    source: https://pvizeli.github.io/esphome-genie/firmware/esphome-genie.manifest.json
-
 wifi:
   # Enable fallback hotspot (captive portal) in case WiFi connection fails
   ap:

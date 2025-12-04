@@ -38,6 +38,16 @@ esp32_improv:
 bluetooth_proxy:
   active: true
 
+# Enable HTTP requests for OTA updates from GitHub releases (ESP32 uses SSL)
+http_request:
+
+# Update component to check for new firmware from GitHub releases
+update:
+  - platform: http_request
+    name: Firmware
+    id: update_http_request
+    source: https://pvizeli.github.io/esphome-genie/firmware/esphome-genie.manifest.json
+
 # ESP32-specific: Status LED using RMT LED Strip (for ESP-IDF)
 light:
   - platform: esp32_rmt_led_strip

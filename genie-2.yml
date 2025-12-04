@@ -40,6 +40,13 @@ captive_portal:
 http_request:
   verify_ssl: false
 
+# Update component to check for new firmware from GitHub releases
+update:
+  - platform: http_request
+    name: Firmware
+    id: update_http_request
+    source: https://pvizeli.github.io/esphome-genie/firmware/esphome-genie.manifest.json
+
 # ESP8266-specific: Status LED using NeoPixelBus
 light:
   - platform: neopixelbus
