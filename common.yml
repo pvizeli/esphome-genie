@@ -44,10 +44,6 @@ update:
     id: update_http_request
     source: https://pvizeli.github.io/esphome-genie/firmware/esphome-genie.manifest.json
 
-# Sets up the improv via serial client for Wi-Fi provisioning
-# Handy for USB provisioning when first setting up the device
-improv_serial:
-
 wifi:
   # Enable fallback hotspot (captive portal) in case WiFi connection fails
   ap:
