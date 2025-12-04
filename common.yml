@@ -37,6 +37,17 @@ ota:
   - platform: http_request
     id: ota_http_request
 
+# Enable HTTP requests for OTA updates (SSL disabled to save memory)
+http_request:
+  verify_ssl: false
+
+# Update component to check for new firmware from GitHub releases
+update:
+  - platform: http_request
+    name: Firmware
+    id: update_http_request
+    source: https://pvizeli.github.io/esphome-genie/firmware/esphome-genie.manifest.json
+
 wifi:
   # Enable fallback hotspot (captive portal) in case WiFi connection fails
   ap:
