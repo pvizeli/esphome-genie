@@ -9,6 +9,7 @@ substitutions:
   name: perfume-genie2
   friendly_name: Perfume Genie 2 ESP8266
   comment: Perfume Genie 2.0 ESP8266.
+  project_version: "1.0.0"  # This will be replaced by GitHub workflows during release builds
   # GPIO pin assignments for ESP8266
   button_pin: GPIO3
   fan_pin: GPIO4

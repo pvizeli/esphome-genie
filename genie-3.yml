@@ -9,6 +9,7 @@ substitutions:
   name: perfume-genie3
   friendly_name: Perfume Genie 3
   comment: Perfume Genie 3.0 ESP32-C6.
+  project_version: "1.0.0"  # This will be replaced by GitHub workflows during release builds
   # GPIO pin assignments for ESP32-C6
   button_pin: GPIO3
   fan_pin: GPIO4

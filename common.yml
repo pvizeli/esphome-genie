@@ -11,7 +11,7 @@ esphome:
   min_version: 2024.6.0
   project:
     name: "pvizeli.genie"
-    version: "1.0.0"
+    version: "${project_version}"
   on_boot:
     - priority: 600
       then:
