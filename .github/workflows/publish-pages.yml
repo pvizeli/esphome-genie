@@ -39,6 +39,7 @@ jobs:
 
       - name: Fetch firmware files
         uses: robinraju/release-downloader@v1
+        continue-on-error: true
         with:
           latest: true
           fileName: '*'

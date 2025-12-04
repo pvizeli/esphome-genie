@@ -39,7 +39,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build ESPHome ${{ matrix.file }} with ${{ matrix.esphome-version }}
-        uses: esphome/build-action@v5
+        uses: esphome/build-action@v7
         with:
           yaml-file: ${{ matrix.file }}.yml
           version: ${{ matrix.esphome-version }}
