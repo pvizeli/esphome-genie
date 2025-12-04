@@ -24,6 +24,7 @@ esphome:
 
 # Enable logging
 logger:
+  level: INFO  # Reduce logging to save space (DEBUG uses more memory)
 
 # Enable Home Assistant API
 api:

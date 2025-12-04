@@ -20,6 +20,11 @@ esp32:
   variant: esp32c6
   framework:
     type: esp-idf
+    sdkconfig_options:
+      # Optimize for smaller firmware size
+      CONFIG_COMPILER_OPTIMIZATION_SIZE: y
+      # Reduce Bluetooth connections to save space
+      CONFIG_BT_NIMBLE_MAX_CONNECTIONS: "3"
 
 # Platform-specific PWM output for ESP32
 output:
