@@ -2,7 +2,7 @@
 
 # Dashboard Import Configuration
 dashboard_import:
-  package_import_url: github://pvizeli/esphome-genie/genie-3.yml@main
+  package_import_url: github://pvizeli/esphome-genie/genie-3.yml
   import_full_config: false
 
 substitutions:
@@ -52,4 +52,4 @@ light:
 
 # Import common configuration from GitHub
 packages:
-  genie_common: github://pvizeli/esphome-genie/common.yml@main
+  genie_common: github://pvizeli/esphome-genie/common.yml
