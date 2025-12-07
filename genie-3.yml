@@ -30,13 +30,11 @@ output:
     id: fan_output_a
     pin: ${fan_pin_a}
     frequency: "25kHz"
-    inverted: true
 
   - platform: ledc
     id: fan_output_b
     pin: ${fan_pin_b}
     frequency: "25kHz"
-    inverted: true
 
   - platform: ledc
     id: red_output
