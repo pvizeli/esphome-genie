@@ -5,7 +5,7 @@ ESPHome firmware for Rituals Perfume Genie devices, supporting both Genie 2 (ESP
 ## Features
 
 - 🌊 PWM-controlled fan speed with auto-off timer
-- 💡 WS2812 RGB status LED
+- 💡 RGB status LED (WS2812 on Genie 2, Common-Anode on Genie 3)
 - 🔘 Physical button control
 - 🏠 Native Home Assistant integration
 - 📡 OTA updates (wireless firmware updates)
@@ -24,10 +24,10 @@ Visit **[https://pvizeli.github.io/esphome-genie/](https://pvizeli.github.io/esp
 
 ### Supported Devices
 
-| Device | Chip | Features |
-|--------|------|----------|
-| **Genie 2** | ESP8266 (ESP-WROOM-02) | WiFi, Captive Portal |
-| **Genie 3** | ESP32-C6 | WiFi, Bluetooth Improv, BLE Proxy |
+| Device | Chip | LED Type | Features |
+|--------|------|----------|----------|
+| **Genie 2** | ESP8266 (ESP-WROOM-02) | WS2812 Addressable RGB | WiFi, Captive Portal |
+| **Genie 3** | ESP32-C6 | Common-Anode RGB LED | WiFi, Bluetooth Improv, BLE Proxy |
 
 ## Configuration Files
 
@@ -84,9 +84,11 @@ esphome compile genie-3.yml
 - GPIO0: Flash mode (boot mode)
 
 ### Genie 3 (ESP32-C6)
-- GPIO3: Power button
+- GPIO17: Power button
 - GPIO4: Fan PWM control
-- GPIO23: WS2812 LED
+- GPIO23: RGB LED (Red)
+- GPIO22: RGB LED (Green)
+- GPIO3: RGB LED (Blue)
 - GPIO9: Flash mode (boot mode)
 
 ## Contributing

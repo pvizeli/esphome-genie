@@ -11,7 +11,7 @@ Perfume Genie is an ESPHome-based smart fragrance diffuser controller. This proj
 
 Both versions feature:
 - PWM-controlled fan speed
-- WS2812 status LED
+- RGB status LED (WS2812 on Genie 2, Common-Anode RGB on Genie 3)
 - Physical button control
 - Home Assistant integration
 - OTA updates

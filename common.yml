@@ -134,5 +134,5 @@ fan:
       - script.execute: auto_off_fan
 
 # Status LED configuration is platform-specific
-# See genie-2.yml for ESP8266 (neopixelbus)
-# See genie-3.yml for ESP32 (esp32_rmt_led_strip)
+# See genie-2.yml for ESP8266 (WS2812 addressable LED via neopixelbus)
+# See genie-3.yml for ESP32-C6 (Common-anode RGB LED via LEDC PWM)

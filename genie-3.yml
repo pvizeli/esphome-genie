@@ -11,9 +11,11 @@ substitutions:
   comment: Perfume Genie 3.0 ESP32-C6.
   project_version: dev  # This will be replaced by GitHub workflows during release builds
   # GPIO pin assignments for ESP32-C6
-  button_pin: GPIO3
+  button_pin: GPIO17
   fan_pin: GPIO4
-  led_pin: GPIO23
+  led_red_pin: GPIO23
+  led_green_pin: GPIO22
+  led_blue_pin: GPIO3
 
 esp32:
   board: esp32-c6-devkitc-1
@@ -30,6 +32,21 @@ output:
     min_power: 0%
     max_power: 100%
 
+  - platform: ledc
+    id: red_output
+    pin: ${led_red_pin}
+    inverted: true
+
+  - platform: ledc
+    id: green_output
+    pin: ${led_green_pin}
+    inverted: true
+
+  - platform: ledc
+    id: blue_output
+    pin: ${led_blue_pin}
+    inverted: true
+
 # ESP32-specific: Improv via Bluetooth for easy WiFi setup
 # Press the physical button to authorize WiFi provisioning
 esp32_improv:
@@ -39,15 +56,14 @@ esp32_improv:
 bluetooth_proxy:
   active: true
 
-# ESP32-specific: Status LED using RMT LED Strip (for ESP-IDF)
+# ESP32-specific: RGB Status LED using LEDC PWM
 light:
-  - platform: esp32_rmt_led_strip
+  - platform: rgb
     name: status_leds
     id: status_led
-    pin: ${led_pin}
-    num_leds: 1
-    rgb_order: GRB
-    chipset: ws2812
+    red: red_output
+    green: green_output
+    blue: blue_output
     internal: true
 
 # Import common configuration from GitHub
