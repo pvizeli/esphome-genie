@@ -79,8 +79,8 @@ fan:
   - platform: hbridge
     id: fan_toggle
     name: "Perfume Genie Fan"
-    pin_a: fan_output_a
-    pin_b: fan_output_b
+    pin_a: fan_output_b
+    pin_b: fan_output_a
     speed_count: 4
     on_turn_off:
       - light.turn_on:
