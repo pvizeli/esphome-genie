@@ -49,11 +49,6 @@ update:
     source: https://pvizeli.github.io/esphome-genie/firmware/esphome-genie.manifest.json
 
 wifi:
-  # Enable fallback hotspot (captive portal) in case WiFi connection fails
-  ap:
-    ssid: "${name} Fallback"
-    password: "config123"
-
   on_connect:
     - light.turn_on:
         id: status_led

@@ -7,13 +7,13 @@ dashboard_import:
 
 substitutions:
   name: perfume-genie3
-  friendly_name: Perfume Genie 3
+  friendly_name: Perfume Genie 3 ESP32-C6
   comment: Perfume Genie 3.0 ESP32-C6.
   project_version: dev  # This will be replaced by GitHub workflows during release builds
   # GPIO pin assignments for ESP32-C6
   button_pin: GPIO3
   fan_pin: GPIO4
-  led_pin: GPIO15
+  led_pin: GPIO23
 
 esp32:
   board: esp32-c6-devkitc-1

@@ -1,2 +1,5 @@
 # Claude Code settings
 .claude/
+
+# ESPHome build files
+.esphome/
