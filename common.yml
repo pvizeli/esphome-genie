@@ -82,6 +82,14 @@ number:
     step: 10
     unit_of_measurement: min
 
+# Auto-off script (defined before fan so it can be referenced)
+script:
+  - id: auto_off_fan
+    mode: restart
+    then:
+      - delay: !lambda "return (int(id(fan_auto_off_delay).state) * 60) * 1000;"
+      - fan.turn_off: fan_toggle
+
 binary_sensor:
 # WIFI Status
   - platform: status
