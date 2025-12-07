@@ -51,26 +51,3 @@ light:
 # Import common configuration from GitHub
 packages:
   genie_common: github://pvizeli/esphome-genie/common.yml
-
-# ESP8266 specific: Speed-based fan control
-fan:
-  - platform: speed
-    output: fan_speed
-    name: "Perfume Genie Fan"
-    id: fan_toggle
-    speed_count: 4
-    on_turn_off:
-      - light.turn_on:
-          id: status_led
-          brightness: 100%
-          red: 0%
-          green: 0%
-          blue: 100%
-    on_turn_on:
-      - light.turn_on:
-          id: status_led
-          brightness: 100%
-          red: 0%
-          green: 100%
-          blue: 0%
-      - script.execute: auto_off_fan

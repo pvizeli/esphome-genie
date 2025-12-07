@@ -1,4 +1,4 @@
-# Common configuration for Perfume Genie 2.0 (ESP8266 and ESP32)
+# Common configuration for Perfume Genie (ESP8266 and ESP32)
 # This file contains all shared configuration that works on both platforms
 # Designed to be imported as a remote package from GitHub
 # Repository: github.com/pvizeli/esphome-genie
@@ -64,7 +64,7 @@ wifi:
         green: 0%
         blue: 0%
 
-# Get time from ha
+# Get time from Home Assistant
 time:
   - platform: homeassistant
     id: homeassistant_time
@@ -73,6 +73,7 @@ number:
   - platform: template
     name: "Fan Auto-Off Delay"
     id: fan_auto_off_delay
+    entity_category: config
     optimistic: true
     restore_value: true
     min_value: 1
@@ -110,9 +111,29 @@ binary_sensor:
       then:
         - fan.toggle: fan_toggle
 
-# Fan configuration is platform-specific
-# See genie-2.yml for ESP8266 (speed platform with GPIO4 PWM)
-# See genie-3.yml for ESP32-C6 (hbridge platform with GPIO18/GPIO19)
-# Status LED configuration is also platform-specific
-# See genie-2.yml for ESP8266 (WS2812 addressable LED via neopixelbus)
-# See genie-3.yml for ESP32-C6 (Common-anode RGB LED via LEDC PWM)
+# Fan control with LED status feedback
+fan:
+  - platform: speed
+    id: fan_toggle
+    output: fan_speed
+    name: "Perfume Genie Fan"
+    speed_count: 4
+    on_turn_off:
+      - light.turn_on:
+          id: status_led
+          brightness: 100%
+          red: 0%
+          green: 0%
+          blue: 100%
+    on_turn_on:
+      - light.turn_on:
+          id: status_led
+          brightness: 100%
+          red: 0%
+          green: 100%
+          blue: 0%
+      - script.execute: auto_off_fan
+
+# Platform-specific output and LED configuration
+# See genie-2.yml for ESP8266 (esp8266_pwm output on GPIO4, WS2812 LED)
+# See genie-3.yml for ESP32-C6 (ledc output on GPIO18, RGB LED)
