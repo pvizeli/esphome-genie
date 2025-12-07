@@ -128,7 +128,9 @@ After successfully flashing, the device will boot into ESPHome. Here's what to e
 
 1. **LED Behavior**
    - On boot: White LED (initialization)
-   - After boot: Blue LED (WiFi disconnected) or Green LED (WiFi connected)
+   - WiFi connected: Blue LED
+   - WiFi disconnected: Red LED
+   - Fan running: Green LED
 
 2. **WiFi Configuration**
 

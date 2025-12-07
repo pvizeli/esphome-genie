@@ -77,14 +77,17 @@ esphome compile genie-3.yml
 
 ## GPIO Pin Mappings
 
-### Common Pins (Both Devices)
+### Genie 2 (ESP8266)
 - GPIO3: Power button
 - GPIO4: Fan PWM control
 - GPIO15: WS2812 LED
+- GPIO0: Flash mode (boot mode)
 
-### Device-Specific
-- **Genie 2**: GPIO0 for flash mode
-- **Genie 3**: GPIO9 for flash mode, GPIO16 for connect button
+### Genie 3 (ESP32-C6)
+- GPIO3: Power button
+- GPIO4: Fan PWM control
+- GPIO23: WS2812 LED
+- GPIO9: Flash mode (boot mode)
 
 ## Contributing
 
