@@ -12,7 +12,8 @@ substitutions:
   project_version: dev  # This will be replaced by GitHub workflows during release builds
   # GPIO pin assignments for ESP32-C6
   button_pin: GPIO17
-  fan_pin: GPIO18
+  fan_pin_a: GPIO18
+  fan_pin_b: GPIO19
   led_red_pin: GPIO23
   led_green_pin: GPIO22
   led_blue_pin: GPIO3
@@ -26,11 +27,14 @@ esp32:
 # Platform-specific PWM output for ESP32
 output:
   - platform: ledc
-    id: fan_speed
-    pin: ${fan_pin}
-    frequency: "21kHz"
-    min_power: 0%
-    max_power: 100%
+    id: fan_output_a
+    pin: ${fan_pin_a}
+    frequency: "25kHz"
+
+  - platform: ledc
+    id: fan_output_b
+    pin: ${fan_pin_b}
+    frequency: "25kHz"
 
   - platform: ledc
     id: red_output
@@ -69,3 +73,52 @@ light:
 # Import common configuration from GitHub
 packages:
   genie_common: github://pvizeli/esphome-genie/common.yml
+
+# ESP32-C6 specific: Auto-off script for H-bridge fan
+script:
+  - id: auto_off_fan
+    mode: restart
+    then:
+      - delay: !lambda "return (int(id(fan_auto_off_delay).state) * 60) * 1000;"
+      - fan.turn_off: fan_toggle
+
+# ESP32-C6 specific: H-bridge fan control
+fan:
+  - platform: hbridge
+    id: fan_toggle
+    name: "Perfume Genie Fan"
+    pin_a: fan_output_a
+    pin_b: fan_output_b
+    speed_count: 4
+    on_turn_off:
+      - light.turn_on:
+          id: status_led
+          brightness: 100%
+          red: 0%
+          green: 0%
+          blue: 100%
+    on_turn_on:
+      - light.turn_on:
+          id: status_led
+          brightness: 100%
+          red: 0%
+          green: 100%
+          blue: 0%
+      - script.execute: auto_off_fan
+
+# ESP32-C6 specific: Button control
+binary_sensor:
+  - platform: gpio
+    name: Genie button
+    id: genie_button
+    icon: "mdi:gesture-tap-button"
+    internal: true
+    pin:
+      number: ${button_pin}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    on_click:
+      - then:
+        - fan.toggle: fan_toggle
