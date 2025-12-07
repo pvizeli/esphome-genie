@@ -30,11 +30,13 @@ output:
     id: fan_output_a
     pin: ${fan_pin_a}
     frequency: "25kHz"
+    inverted: true
 
   - platform: ledc
     id: fan_output_b
     pin: ${fan_pin_b}
     frequency: "25kHz"
+    inverted: true
 
   - platform: ledc
     id: red_output
@@ -79,8 +81,8 @@ fan:
   - platform: hbridge
     id: fan_toggle
     name: "Perfume Genie Fan"
-    pin_a: fan_output_b
-    pin_b: fan_output_a
+    pin_a: fan_output_a
+    pin_b: fan_output_b
     speed_count: 4
     on_turn_off:
       - light.turn_on:
