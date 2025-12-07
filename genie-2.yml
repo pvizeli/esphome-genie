@@ -52,14 +52,6 @@ light:
 packages:
   genie_common: github://pvizeli/esphome-genie/common.yml
 
-# ESP8266 specific: Auto-off script for speed-based fan
-script:
-  - id: auto_off_fan
-    mode: restart
-    then:
-      - delay: !lambda "return (int(id(fan_auto_off_delay).state) * 60) * 1000;"
-      - fan.turn_off: fan_toggle
-
 # ESP8266 specific: Speed-based fan control
 fan:
   - platform: speed
@@ -82,20 +74,3 @@ fan:
           green: 100%
           blue: 0%
       - script.execute: auto_off_fan
-
-# ESP8266 specific: Button control
-binary_sensor:
-  - platform: gpio
-    name: Genie button
-    id: genie_button
-    icon: "mdi:gesture-tap-button"
-    internal: true
-    pin:
-      number: ${button_pin}
-      inverted: true
-      mode:
-        input: true
-        pullup: true
-    on_click:
-      - then:
-        - fan.toggle: fan_toggle

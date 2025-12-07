@@ -81,13 +81,36 @@ number:
     step: 10
     unit_of_measurement: min
 
+script:
+  - id: auto_off_fan
+    mode: restart
+    then:
+      - delay: !lambda "return (int(id(fan_auto_off_delay).state) * 60) * 1000;"
+      - fan.turn_off: fan_toggle
+
 binary_sensor:
 # WIFI Status
   - platform: status
     name: "Wifi Status"
     icon: "mdi:wifi"
 
-# Fan, button, and script configuration is platform-specific
+# Rear button fan toggle
+  - platform: gpio
+    name: Genie button
+    id: genie_button
+    icon: "mdi:gesture-tap-button"
+    internal: true
+    pin:
+      number: ${button_pin}
+      inverted: true
+      mode:
+        input: true
+        pullup: true
+    on_click:
+      then:
+        - fan.toggle: fan_toggle
+
+# Fan configuration is platform-specific
 # See genie-2.yml for ESP8266 (speed platform with GPIO4 PWM)
 # See genie-3.yml for ESP32-C6 (hbridge platform with GPIO18/GPIO19)
 # Status LED configuration is also platform-specific
