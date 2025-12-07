@@ -31,6 +31,11 @@ output:
     frequency: "25kHz"
 
   - platform: ledc
+    id: fan_speed_unknown
+    pin: GPIO1
+    frequency: "25kHz"
+
+  - platform: ledc
     id: red_output
     pin: ${led_red_pin}
     inverted: true
