@@ -79,7 +79,7 @@ number:
     entity_category: config
     optimistic: true
     restore_value: true
-    min_value: 1
+    min_value: 0
     max_value: 180
     initial_value: 30
     step: 10
@@ -90,8 +90,12 @@ script:
   - id: auto_off_fan
     mode: restart
     then:
-      - delay: !lambda "return (int(id(fan_auto_off_delay).state) * 60) * 1000;"
-      - fan.turn_off: fan_toggle
+      - if:
+          condition:
+            lambda: 'return id(fan_auto_off_delay).state > 0;'
+          then:
+            - delay: !lambda "return (int(id(fan_auto_off_delay).state) * 60) * 1000;"
+            - fan.turn_off: fan_toggle
 
 binary_sensor:
 # WIFI Status
