@@ -26,6 +26,9 @@ esphome:
 logger:
   level: INFO  # Reduce logging to save space (DEBUG uses more memory)
 
+# Enable Improv via Serial
+improv_serial:
+
 # Enable Home Assistant API
 api:
   encryption:   # Uses key set by Home Assistant
