@@ -48,6 +48,19 @@ light:
     type: GRB
     internal: true
 
+external_components:
+  - source:
+      type: git
+      url: https://github.com/pvizeli/esphome
+      ref: fix-http-request-2025.11
+    components: [ http_request ]
+    refresh: 0d
+
 # Import common configuration from GitHub
 packages:
   genie_common: github://pvizeli/esphome-genie/common.yml
+
+# Re-declare http_request to ensure external_components version is used
+# This overrides the http_request from common.yml
+http_request:
+  verify_ssl: false
